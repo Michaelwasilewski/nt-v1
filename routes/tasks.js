@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const task = await Task.findById(req.params.id);
-        if (!task) return res.status(404).json({ msg: 'Task not found' });
+        if (!task) return res.status(404).json({ msg: 'Post not found' });
         res.json(task);
     } catch (error) {
         console.error(error.message);
@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         let task = await Task.findById(req.params.id);
-        if (!task) return res.status(404).json({ msg: 'Task not found' });
+        if (!task) return res.status(404).json({ msg: 'Post not found' });
 
         task = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.json(task);
@@ -56,16 +56,21 @@ router.put('/:id', async (req, res) => {
 });
 
 // @route   DELETE api/tasks/:id
-// @desc    Delete a task
+// @desc    Delete task by ID
 router.delete('/:id', async (req, res) => {
     try {
-        const task = await Task.findById(req.params.id);
-        if (!task) return res.status(404).json({ msg: 'Task not found' });
+        const result = await Task.findByIdAndDelete(req.params.id);
 
-        await task.remove();
-        res.json({ msg: 'Task removed' });
+        if (!result) {
+            return res.status(404).json({ msg: 'Post not found' });
+        }
+
+        res.json({ msg: 'Post removed' });
     } catch (error) {
         console.error(error.message);
+        if (error.kind === 'ObjectId') {
+            return res.status(404).json({ msg: 'Post not found' });
+        }
         res.status(500).send('Server Error');
     }
 });
