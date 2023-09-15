@@ -23,6 +23,10 @@ const HeroSection = () => {
 				handleScroll
 			);
 	}, []);
+	const isSafari =
+		/^((?!chrome|android).)*safari/i.test(
+			navigator.userAgent
+		);
 
 	return (
 		<div className="relative h-screen">
@@ -31,12 +35,12 @@ const HeroSection = () => {
 				className="absolute top-0 left-0 w-full h-full bg-cover bg-center bg-gray-200" // fallback bg-color and centering with Tailwind
 				style={{
 					backgroundImage: `url(${HeroBackground})`,
-					transform: `translateY(${
-						scrollY * 0.9
-					}px)`,
-					WebkitTransform: `translateY(${
-						scrollY * 0.9
-					}px)`,
+					transform: isSafari
+						? "none"
+						: `translateY(${scrollY * 0.9}px)`,
+					backgroundAttachment: isSafari
+						? "fixed"
+						: "scroll",
 				}}
 			>
 				{/* Darkened color overlay */}
