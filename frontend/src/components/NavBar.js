@@ -26,7 +26,7 @@ const NavBar = () => {
 						alt="Logo"
 						className="h-16 w-auto"
 					/>
-					<span className="text-xl font-bold text-white">
+					<span className="text-xl font-bold text-white font-serif">
 						Naturalna Transformacja
 					</span>
 				</Link>
@@ -45,7 +45,7 @@ const NavBar = () => {
 
 				{/* Links */}
 				<div
-					className={`lg:flex lg:items-center lg:space-x-6 ${
+					className={`lg:flex lg:items-center lg:space-x-6 font-serif ${
 						isOpen
 							? "flex flex-col space-y-4 absolute top-16 left-0 right-0 bg-[#2e3046] p-5 z-10 shadow-md"
 							: "hidden"

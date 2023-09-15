@@ -1,6 +1,5 @@
 import React from "react";
 import Slider from "react-slick";
-import { Parallax } from "react-scroll-parallax";
 
 import Background1 from "../img/onlinecourse.jpg";
 import Background2 from "../img/healing.jpg";
@@ -88,9 +87,9 @@ const ParallaxSlider = () => {
 			{slideContents.map((content, index) => (
 				<div
 					key={index}
-					className="relative h-screen"
+					className="relative flex items-center justify-center h-[50vh] sm:h-[75vh] md:h-[85vh]"
 				>
-					<Parallax y={[-20, 20]}>
+					<div className="absolute inset-0 z-0">
 						<img
 							src={
 								[
@@ -103,24 +102,24 @@ const ParallaxSlider = () => {
 							alt={`Slide ${index + 1}`}
 							className="w-full h-full object-cover"
 						/>
-					</Parallax>
+					</div>
 
 					{/* Overlay content */}
-					<div className="absolute inset-0 flex flex-col justify-center items-center p-6">
-						{" "}
-						{/* Removed bg-opacity-30 */}
-						<h2 className="text-5xl text-white font-bold mb-4 shadow-text">
-							{content.title}
-						</h2>
-						<p className="text-2xl text-white mb-5 shadow-text">
-							{content.description}
-						</p>
-						<a
-							href={content.ctaLink}
-							className="bg-white py-2 px-6 text-xl text-[#333] font-semibold rounded-full hover:bg-opacity-90 transition-all duration-300 shadow-lg"
-						>
-							{content.ctaText}
-						</a>
+					<div className="absolute inset-0 z-10 flex items-center justify-center">
+						<div className="text-center p-3">
+							<h2 className="text-2xl sm:text-4xl md:text-5xl text-white font-bold mb-2 sm:mb-4 md:mb-5 shadow-text">
+								{content.title}
+							</h2>
+							<p className="text-base sm:text-2xl text-white mb-2 sm:mb-4 md:mb-5 shadow-text">
+								{content.description}
+							</p>
+							<a
+								href={content.ctaLink}
+								className="bg-white py-1 px-3 sm:py-2 sm:px-4 md:py-2 md:px-6 text-sm sm:text-base md:text-xl text-[#333] font-semibold rounded-full hover:bg-opacity-90 transition-all duration-300 shadow-lg"
+							>
+								{content.ctaText}
+							</a>
+						</div>
 					</div>
 				</div>
 			))}

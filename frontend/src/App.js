@@ -1,4 +1,3 @@
-import "./App.css";
 import HeroSection from "./components/HeroSection";
 import Layout from "./components/Layout";
 import ParallaxSlider from "./components/ParallaxSlider";
