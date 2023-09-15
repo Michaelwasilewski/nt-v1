@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../img/logo.png";
+
 const Footer = () => {
 	return (
 		<footer className="bg-secondary shadow-md">
@@ -16,9 +17,6 @@ const Footer = () => {
 							alt="Logo"
 							className="h-16 w-auto"
 						/>
-						<span className="text-2xl font-medium text-primary">
-							Naturalna Transformacja
-						</span>
 					</Link>
 				</div>
 
@@ -40,7 +38,7 @@ const Footer = () => {
 				</div>
 
 				{/* Links */}
-				<div className="w-full lg:w-1/3 flex flex-wrap justify-center space-x-0 lg:space-x-6 space-y-4 lg:space-y-0">
+				<div className="w-full lg:w-1/4 flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:space-x-6">
 					{[
 						"Strona główna",
 						"O Nas",
@@ -50,7 +48,7 @@ const Footer = () => {
 						<Link
 							key={index}
 							to="/"
-							className="text-primary hover:bg-accent hover:text-darken transition-colors duration-300 px-4 py-2 rounded-md"
+							className="text-primary hover:bg-accent hover:text-darken transition-colors duration-300 px-4 py-2 rounded-md text-center"
 						>
 							{text}
 						</Link>

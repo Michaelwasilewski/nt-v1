@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Logo from "../img/logo.png";
+
 const NavBar = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -17,19 +18,21 @@ const NavBar = () => {
 		<nav className="fixed top-0 w-full bg-[rgba(51,51,51,0.6)] shadow-md transition-all duration-300 hover:bg-[#333] z-50">
 			<div className="container mx-auto px-6 py-4 flex justify-between items-center">
 				{/* Logo */}
-				<Link
-					to="/"
-					className="flex items-center space-x-4"
-				>
-					<img
-						src={Logo}
-						alt="Logo"
-						className="h-16 w-auto"
-					/>
-					<span className="text-xl font-bold text-white font-serif">
-						Naturalna Transformacja
-					</span>
-				</Link>
+				<div className="flex justify-center lg:justify-between items-center w-full lg:w-auto">
+					<Link
+						to="/"
+						className="flex items-center space-x-4"
+					>
+						<img
+							src={Logo}
+							alt="Logo"
+							className="h-16 w-auto"
+						/>
+						<span className="text-xl font-bold text-white font-serif lg:block hidden">
+							Naturalna Transformacja
+						</span>
+					</Link>
+				</div>
 
 				{/* Mobile Menu Button */}
 				<button
