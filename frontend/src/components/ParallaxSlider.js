@@ -5,6 +5,7 @@ import { Parallax } from "react-scroll-parallax";
 import Background1 from "../img/onlinecourse.jpg";
 import Background2 from "../img/healing.jpg";
 import Background3 from "../img/gestalt.jpg";
+import Background4 from "../img/detox.jpg";
 
 const ParallaxSlider = () => {
 	const NextArrow = (props) => {
@@ -74,6 +75,12 @@ const ParallaxSlider = () => {
 			ctaText: "Dowiedz się więcej",
 			ctaLink: "/gestalt",
 		},
+		{
+			title: "Simple Detox",
+			description: "Zrozum zasady Gestalt...",
+			ctaText: "Dowiedz się więcej",
+			ctaLink: "/detox",
+		},
 	];
 
 	return (
@@ -90,6 +97,7 @@ const ParallaxSlider = () => {
 									Background1,
 									Background2,
 									Background3,
+									Background4,
 								][index]
 							}
 							alt={`Slide ${index + 1}`}
