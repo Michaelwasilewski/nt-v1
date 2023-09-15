@@ -14,13 +14,10 @@ const ParallaxSlider = () => {
 				className={className}
 				style={{
 					...style,
-					fontSize: "2em",
-					right: "10px",
+					right: "20px",
 				}}
 				onClick={onClick}
-			>
-				▶
-			</div>
+			></div>
 		);
 	};
 
@@ -31,14 +28,11 @@ const ParallaxSlider = () => {
 				className={className}
 				style={{
 					...style,
-					fontSize: "2em",
-					left: "10px",
+					left: "20px",
 					zIndex: "2",
 				}}
 				onClick={onClick}
-			>
-				◀
-			</div>
+			></div>
 		);
 	};
 

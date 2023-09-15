@@ -15,8 +15,8 @@ const NavBar = () => {
 	};
 
 	return (
-		<nav className="fixed top-0 w-full bg-[rgba(51,51,51,0.6)] shadow-md transition-all duration-300 hover:bg-[#333] z-50">
-			<div className="container mx-auto px-6 py-4 flex justify-between items-center">
+		<nav className="fixed top-0 w-full bg-[rgba(51,51,51,0.6)] shadow-md transition-all duration-300 hover:bg-[#333] z-50 overflow-x-hidden">
+			<div className="container mx-auto px-4 py-4 flex justify-between items-center">
 				{/* Logo */}
 				<div className="flex justify-center lg:justify-between items-center w-full lg:w-auto">
 					<Link
@@ -50,7 +50,7 @@ const NavBar = () => {
 				<div
 					className={`lg:flex lg:items-center lg:space-x-6 font-serif ${
 						isOpen
-							? "flex flex-col space-y-4 absolute top-16 left-0 right-0 bg-[#2e3046] p-5 z-10 shadow-md"
+							? "flex flex-col space-y-4 absolute top-16 left-0 w-full bg-[#2e3046] p-5 z-10 shadow-md"
 							: "hidden"
 					}`}
 				>
