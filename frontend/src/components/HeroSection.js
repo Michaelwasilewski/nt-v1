@@ -34,6 +34,9 @@ const HeroSection = () => {
 					transform: `translateY(${
 						scrollY * 0.9
 					}px)`,
+					WebkitTransform: `translateY(${
+						scrollY * 0.9
+					}px)`,
 				}}
 			>
 				{/* Darkened color overlay */}
