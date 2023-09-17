@@ -76,7 +76,7 @@ const NavBar = () => {
 
 	const renderMobileNavBar = () => (
 		<>
-			<div className="flex items-center w-full justify-center">
+			<div className="flex justify-between items-center w-full">
 				<Link to="/">
 					<img
 						src={Logo}
@@ -100,7 +100,7 @@ const NavBar = () => {
 				ref={dropdownRef}
 				className={`dropdown-content transition-transform transform ${
 					isOpen
-						? "flex flex-col space-y-4 absolute top-20 left-0 w-full p-5 z-10 shadow-lg rounded-lg mt-2"
+						? "flex flex-col space-y-4 absolute top-20 right-0 w-full p-5 z-10 shadow-lg mt-2"
 						: "hidden"
 				}`}
 				style={{
@@ -154,7 +154,6 @@ const NavBar = () => {
 						className="h-20 w-auto"
 					/>
 				</Link>
-				{/* Applying Montserrat font family for the name */}
 				<h2 className="text-xl font-semibold text-white font-serif">
 					Natural Therapies
 				</h2>
