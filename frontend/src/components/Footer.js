@@ -4,41 +4,47 @@ import Logo from "../img/logo.png";
 
 const Footer = () => {
 	return (
-		<footer className="bg-secondary shadow-md">
-			<div className="container mx-auto px-4 py-8 flex flex-wrap justify-between items-start space-y-6 md:space-y-0">
-				{/* Logo and Description */}
-				<div className="w-full lg:w-1/4 mb-4">
-					<Link
-						to="/"
-						className="flex items-center space-x-3"
-					>
+		<footer className="bg-secondary p-6">
+			<div className="container mx-auto flex flex-wrap justify-between items-center">
+				{/* Logo */}
+				<div className="flex items-center mb-6">
+					<Link to="/">
 						<img
 							src={Logo}
 							alt="Logo"
 							className="h-16 w-auto"
 						/>
 					</Link>
+					<div className="ml-4 text-white">
+						<h2 className="text-xl font-semibold">
+							Natural Therapies
+						</h2>
+						<p className="text-sm mt-1">
+							Przynoszenie naturalnego uzdrowienia
+							dla Ciebie.
+						</p>
+					</div>
 				</div>
 
 				{/* Newsletter */}
-				<div className="w-full lg:w-1/3 mb-4">
-					<h2 className="text-primary font-medium text-lg mb-3">
-						Sign up for our Newsletter
+				<div className="mb-6 w-full md:w-2/5">
+					<h2 className="text-white font-medium text-lg mb-3">
+						Zapisz się do naszego newslettera
 					</h2>
-					<div className="flex border rounded-md overflow-hidden">
+					<div className="flex border rounded-md overflow-hidden bg-white">
 						<input
 							type="email"
-							placeholder="Enter your email"
+							placeholder="Wpisz swój e-mail"
 							className="p-2 flex-grow focus:outline-none"
 						/>
-						<button className="bg-primary text-white p-2 px-5 transition-colors hover:bg-darken">
-							Sign Up
+						<button className="bg-primary text-white p-2 px-5 hover:bg-opacity-80 transition ease-in-out duration-300">
+							Subskrybuj
 						</button>
 					</div>
 				</div>
 
-				{/* Links */}
-				<div className="w-full lg:w-1/4 flex flex-col space-y-4 lg:space-y-0 lg:flex-row lg:space-x-6">
+				{/* Navigation Links */}
+				<div className="mb-6 w-full md:w-2/5 flex flex-wrap justify-between">
 					{[
 						"Strona główna",
 						"O Nas",
@@ -48,7 +54,7 @@ const Footer = () => {
 						<Link
 							key={index}
 							to="/"
-							className="text-primary hover:bg-accent hover:text-darken transition-colors duration-300 px-4 py-2 rounded-md text-center"
+							className="text-primary hover:underline mb-2"
 						>
 							{text}
 						</Link>
@@ -56,11 +62,11 @@ const Footer = () => {
 				</div>
 
 				{/* Copyright */}
-				<div className="w-full mt-6 text-center">
+				<div className="w-full border-t border-opacity-30 mt-6 pt-6 text-center">
 					<span className="text-primary text-sm">
 						&copy; {new Date().getFullYear()}{" "}
-						Naturalna Transformacja. Wszystkie
-						prawa zastrzeżone.
+						Natural Therapies. Wszystkie prawa
+						zastrzeżone.
 					</span>
 				</div>
 			</div>

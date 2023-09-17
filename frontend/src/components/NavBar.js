@@ -1,10 +1,70 @@
-import React, { useState } from "react";
+import React, {
+	useState,
+	useEffect,
+	useRef,
+} from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Logo from "../img/logo.png";
 
 const NavBar = () => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [scrollPos, setScrollPos] = useState(0);
+	const dropdownRef = useRef(null);
+	const buttonRef = useRef(null);
+	const [isDesktop, setIsDesktop] = useState(
+		window.innerWidth > 1024
+	);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setIsDesktop(window.innerWidth > 1024);
+		};
+
+		const handleScroll = () => {
+			setScrollPos(window.pageYOffset);
+		};
+
+		const handleClickOutside = (event) => {
+			if (
+				dropdownRef.current &&
+				!dropdownRef.current.contains(
+					event.target
+				) &&
+				!buttonRef.current.contains(event.target)
+			) {
+				setIsOpen(false);
+			}
+		};
+
+		window.addEventListener(
+			"resize",
+			handleResize
+		);
+		window.addEventListener(
+			"scroll",
+			handleScroll
+		);
+		document.addEventListener(
+			"mousedown",
+			handleClickOutside
+		);
+
+		return () => {
+			window.removeEventListener(
+				"resize",
+				handleResize
+			);
+			window.removeEventListener(
+				"scroll",
+				handleScroll
+			);
+			document.removeEventListener(
+				"mousedown",
+				handleClickOutside
+			);
+		};
+	}, []);
 
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
@@ -14,30 +74,20 @@ const NavBar = () => {
 		setIsOpen(false);
 	};
 
-	return (
-		<nav className="fixed top-0 w-full bg-[rgba(51,51,51,0.6)] shadow-md transition-all duration-300 hover:bg-[#333] z-50 overflow-x-hidden">
-			<div className="container mx-auto px-4 py-4 flex justify-between items-center">
-				{/* Logo */}
-				<div className="flex justify-center lg:justify-between items-center w-full lg:w-auto">
-					<Link
-						to="/"
-						className="flex items-center space-x-4"
-					>
-						<img
-							src={Logo}
-							alt="Logo"
-							className="h-16 w-auto"
-						/>
-						<span className="text-xl font-bold text-white font-serif lg:block hidden">
-							Naturalna Transformacja
-						</span>
-					</Link>
-				</div>
-
-				{/* Mobile Menu Button */}
+	const renderMobileNavBar = () => (
+		<>
+			<div className="flex items-center w-full justify-center">
+				<Link to="/">
+					<img
+						src={Logo}
+						alt="Logo"
+						className="h-16 w-auto"
+					/>
+				</Link>
 				<button
 					onClick={toggleMenu}
-					className="lg:hidden focus:outline-none"
+					className="focus:outline-none"
+					ref={buttonRef}
 				>
 					{isOpen ? (
 						<FaTimes className="w-6 h-6 text-white" />
@@ -45,32 +95,104 @@ const NavBar = () => {
 						<FaBars className="w-6 h-6 text-white" />
 					)}
 				</button>
-
-				{/* Links */}
-				<div
-					className={`lg:flex lg:items-center lg:space-x-6 font-serif ${
-						isOpen
-							? "flex flex-col space-y-4 absolute top-16 left-0 w-full bg-[#2e3046] p-5 z-10 shadow-md"
-							: "hidden"
-					}`}
-				>
-					{[
-						"Strona główna",
-						"O Nas",
-						"Pakiety",
-					].map((linkName) => (
-						<Link
-							key={linkName}
-							to={`/${linkName
-								.replace(/\s+/g, "-")
-								.toLowerCase()}`}
-							onClick={handleLinkClick}
-							className="text-white hover:bg-[#444] transition-all duration-300 px-4 py-2 rounded-md text-lg font-medium"
-						>
-							{linkName}
-						</Link>
-					))}
+			</div>
+			<div
+				ref={dropdownRef}
+				className={`dropdown-content transition-transform transform ${
+					isOpen
+						? "flex flex-col space-y-4 absolute top-20 left-0 w-full p-5 z-10 shadow-lg rounded-lg mt-2"
+						: "hidden"
+				}`}
+				style={{
+					transform: isOpen
+						? "translateY(0)"
+						: "translateY(-10px)",
+					backgroundColor:
+						scrollPos === 0
+							? "#2e3046"
+							: "transparent",
+				}}
+			>
+				{[
+					"Strona główna",
+					"O Nas",
+					"Pakiety",
+				].map((linkName) => (
+					<Link
+						key={linkName}
+						to={`/${linkName
+							.replace(/\s+/g, "-")
+							.toLowerCase()}`}
+						onClick={handleLinkClick}
+						className="text-white px-4 py-2 text-lg font-medium block hover:bg-opacity-70 hover:bg-[#1e1f33] rounded transition-all duration-200"
+					>
+						{linkName}
+					</Link>
+				))}
+				<hr className="my-4 border-t border-opacity-40" />
+				<div className="flex justify-center items-center">
+					<Link to="/">
+						<img
+							src={Logo}
+							alt="Logo"
+							className="h-12 w-auto"
+						/>
+					</Link>
 				</div>
+			</div>
+		</>
+	);
+
+	const renderDesktopNavBar = () => (
+		<div className="flex justify-between items-center w-full">
+			{/* Logo and Name */}
+			<div className="flex items-center space-x-4">
+				<Link to="/">
+					<img
+						src={Logo}
+						alt="Logo"
+						className="h-20 w-auto"
+					/>
+				</Link>
+				{/* Applying Montserrat font family for the name */}
+				<h2 className="text-xl font-semibold text-white font-serif">
+					Natural Therapies
+				</h2>
+			</div>
+
+			{/* Links */}
+			<div className="flex items-center space-x-8">
+				{[
+					"Strona główna",
+					"O Nas",
+					"Pakiety",
+				].map((linkName) => (
+					<Link
+						key={linkName}
+						to={`/${linkName
+							.replace(/\s+/g, "-")
+							.toLowerCase()}`}
+						className="text-white px-5 py-2 text-lg font-medium block hover:bg-opacity-70 hover:bg-[#1e1f33] rounded-lg transition-all duration-200 font-serif" // Applying Montserrat font family for the links
+					>
+						{linkName}
+					</Link>
+				))}
+			</div>
+		</div>
+	);
+
+	return (
+		<nav
+			className={`fixed top-0 w-full shadow-md transition-all duration-300 z-50 ${
+				scrollPos > 10
+					? "bg-opacity-70"
+					: "bg-opacity-100"
+			} bg-secondary`} // Changing opacity based on scroll position
+		>
+			<div className="container mx-auto px-4 py-4 flex justify-between items-center lg:justify-start">
+				{isDesktop
+					? renderDesktopNavBar()
+					: renderMobileNavBar()}
 			</div>
 		</nav>
 	);

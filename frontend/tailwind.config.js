@@ -4,10 +4,12 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				primary: "#495057",
-				secondary: "#e0e7f1",
-				accent: "#d1dbe5",
-				darken: "#333",
+				primary: "#6C63FF", // Primary Purple
+				secondary: "#4B3F72", // Secondary Purple
+				accent: "#1BB1B7", // Accent Teal
+				darken: "#333333", // Neutral Dark
+				light: "#F6F6F6", // Neutral Light
+				highlight: "#FFB6C1", // Highlight Color
 			},
 			fontFamily: {
 				sans: [
