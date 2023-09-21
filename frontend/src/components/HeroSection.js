@@ -43,7 +43,7 @@ const HeroSection = () => {
 						: "scroll",
 				}}
 			>
-				<div className="absolute inset-0 bg-primary bg-opacity-60"></div>
+				<div className="absolute inset-0"></div>
 			</div>
 
 			{/* Content container */}
